@@ -49,18 +49,18 @@ class Product:
 Один из вариантов:
 
 ```bash
-pip install "psycopg[binary]"
+pip install psycopg2-binary
 ```
 
-Функцию подключения удобно вынести в отдельный файл, например `database.py`.
+Функцию подключения нужно создать в `tasks.py` этого этапа. Следующий этап будет импортировать ее оттуда.
 
 ```python
 import os
-import psycopg
+import psycopg2
 
 
 def get_connection():
-    return psycopg.connect(
+    return psycopg2.connect(
         host=os.getenv("DB_HOST", "localhost"),
         port=os.getenv("DB_PORT", "5432"),
         dbname=os.getenv("DB_NAME", "clothing_store"),
@@ -136,10 +136,11 @@ class Book:
 После настройки подключения полезно выполнить простой запрос:
 
 ```python
+connection = get_connection()
+
 with connection.cursor() as cursor:
     cursor.execute("SELECT 1")
     result = cursor.fetchone()
 ```
 
 Если запрос вернул результат, значит Python видит PostgreSQL и можно переходить к репозиториям.
-
