@@ -7,7 +7,7 @@
 На этом этапе не подключайте базу данных и backend из задания 17.
 Сначала нужно понять, как работает окно и главный цикл.
 """
-
+import tkinter as tk
 
 # Задание 1
 # Импортируйте tkinter и создайте главное окно приложения.
@@ -15,7 +15,54 @@
 
 
 # TODO: создать главное окно
-
+class DesktopApp:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Магазин одежды 'Айсулуу'")
+        self.root.geometry("500x400")
+        
+        self.title_label = tk.Label(
+            self.root,
+            text="Добро пожаловать в магазин одежды 'Айсулуу'",
+            font=("Arial", 14, "bold")
+        )
+        self.title_label.pack(pady=20)
+        
+        self.catalog_btn = tk.Button(
+            self.root,
+            text="Каталог",
+            width=20,
+            height=2
+        )
+        self.catalog_btn.pack(pady=5)
+        
+        self.cart_btn = tk.Button(
+            self.root,
+            text="Корзина",
+            width=20,
+            height=2
+        )
+        self.cart_btn.pack(pady=5)
+        
+        self.order_btn = tk.Button(
+            self.root,
+            text="Оформить заказ",
+            width=20,
+            height=2
+        )
+        self.order_btn.pack(pady=5)
+        
+        self.exit_btn = tk.Button(
+            self.root,
+            text="Выход",
+            width=20,
+            height=2,
+            command=self.close_app
+        )
+        self.exit_btn.pack(pady=5)
+    
+    def close_app(self):
+        self.root.destroy()
 
 # Задание 2
 # Добавьте в окно заголовок приложения через Label.
@@ -55,3 +102,9 @@
 
 
 # TODO: добавить ручную проверку запуска
+    def run(self):
+        self.root.mainloop()
+
+if __name__ == "__main__":
+    app = DesktopApp()
+    app.run()
