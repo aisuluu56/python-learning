@@ -15,7 +15,6 @@ from tkinter import ttk
 # TODO: создать структуру окна через Frame
 class StoreApp:
     def __init__(self):
-        # Задание 1: Создайте главное окно и разделите его на несколько областей через Frame
         self.root = tk.Tk()
         self.root.title("Магазин одежды 'Айсулуу'")
         self.root.geometry("800x500")
