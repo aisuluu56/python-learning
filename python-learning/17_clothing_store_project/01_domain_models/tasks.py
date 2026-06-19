@@ -16,10 +16,10 @@
 # TODO: добавить модель категории
 class Category:
     def __init__(self, category_id, name, description):
-        if category_id <= 0:
+        if category_id is not None and category_id <= 0:
             raise ValueError("ID категории должен быть положительным")
-        if not name or not name.strip():
-            raise ValueError("Название категории не может быть пустым")
+        #if not name or not name.strip():
+            #raise ValueError("Название категории не может быть пустым")
         
         self.category_id = category_id
         self.name = name.strip()
@@ -50,7 +50,7 @@ class Product:
 # TODO: добавить защиту состояния товара
 class Product:
     def __init__(self, product_id, name, category, price, color, description="", is_active=True):
-        if product_id <= 0:
+        if product_id is not None and product_id <= 0:
             raise ValueError("ID товара должен быть положительным")
         if not name or not name.strip():
             raise ValueError("Название товара не может быть пустым")
@@ -100,12 +100,12 @@ class SizeStock:
 # TODO: добавить методы изменения и проверки товара
 class Product:
     def __init__(self, product_id, name, category, price, color, description="", is_active=True):
-        if product_id <= 0:
+        if product_id is not None and product_id <= 0:
             raise ValueError("ID товара должен быть положительным")
         if not name or not name.strip():
             raise ValueError("Название товара не может быть пустым")
-        if not isinstance(category, Category):
-            raise ValueError("Категория должна быть объектом Category")
+        #if not isinstance(category, Category):
+            #raise ValueError("Категория должна быть объектом Category")
         if price < 0:
             raise ValueError("Цена не может быть отрицательной")
         if not color or not color.strip():
@@ -138,8 +138,8 @@ class SizeStock:
     VALID_SIZES = ["XS", "S", "M", "L", "XL", "XXL"]
     
     def __init__(self, product, size, quantity):
-        if not isinstance(product, Product):
-            raise ValueError("Должен быть указан объект Product")
+        #if not isinstance(product, Product):
+            #raise ValueError("Должен быть указан объект Product")
         if size not in self.VALID_SIZES:
             raise ValueError(f"Размер должен быть из {self.VALID_SIZES}")
         if quantity < 0:
@@ -176,7 +176,7 @@ class SizeStock:
 # TODO: добавить модель покупателя
 class Customer:
     def __init__(self, customer_id, full_name, phone, email):
-        if customer_id <= 0:
+        if customer_id is not None and customer_id <= 0:
             raise ValueError("ID покупателя должен быть положительным")
         if not full_name or not full_name.strip():
             raise ValueError("Имя покупателя не может быть пустым")

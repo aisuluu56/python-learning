@@ -177,17 +177,21 @@ if __name__ == "__main__":
     order_service = OrderService(stock_repo, customer_repo, order_repo, conn)
     
     # Создаем тестовые данные
+    # Исправление: создаем категорию без ID (None), репозиторий сам присвоит ID
     category = Category(None, "Футболки", "Хлопковые")
     cat_id = category_repo.add(category)
+    # Получаем категорию с ID из БД
     category = category_repo.get_by_id(cat_id)
     
+    # Исправление: создаем продукт с None ID
     product = Product(None, "Белая футболка", category, 1999, "Белый", "", True)
     prod_id = product_repo.add(product)
+    # Получаем продукт с ID из БД
     product = product_repo.get_by_id(prod_id, category_repo)
     
-    # Добавляем остатки
-    prod = Product(prod_id, "", None, 0, "")
-    stock_repo.add(SizeStock(prod, "M", 10))
+    # Исправление: создаем объект Product для остатков
+    # Используем существующий продукт с ID
+    stock_repo.add(SizeStock(product, "M", 10))
     
     # Создаем покупателя
     customer = Customer(None, "Иван Петров", "+7(999)123-45-67", "ivan@mail.ru")
