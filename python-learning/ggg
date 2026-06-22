@@ -1,4 +1,4 @@
-```python
+
 # Этап 03. События и состояние
 import tkinter as tk
 from tkinter import ttk
